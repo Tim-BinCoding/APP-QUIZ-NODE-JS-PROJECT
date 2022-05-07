@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../img/quizicon.png" type="image/x-icon">
+    <title> Do quiz </title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- FontAweome CDN Link for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="menu">
+        <div class="menuHeader">
+            <div class="appLogo"><img src="../../img/logo.png" width="15%"></div>
+            <div class="TitleApp">SMART APP NODE-G02</div>
+            <div class="showUserLogin">
+                <a href="../../index.html">
+                    <i class='fa fa-user-circle-o' style='font-size:24px'></i>
+                    <span class="userLogin"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- start Quiz button -->
+    <div class="start_btn"><button>Start Quiz</button></div>
+
+    <!-- Info Box -->
+    <div class="info_box">
+        <div class="info-title"><span>Some Rules of this Quiz</span></div>
+        <div class="info-list">
+            <div class="info">1. You will have only <span>15 seconds</span> per each question.</div>
+            <div class="info">2. Once you select your answer, it can't be undone.</div>
+            <div class="info">3. You can't select any option once time goes off.</div>
+            <div class="info">4. You can't exit from the Quiz while you're playing.</div>
+            <div class="info">5. You'll get points on the basis of your correct answers.</div>
+        </div>
+        <div class="buttons">
+            <button class="quit">Exit Quiz</button>
+            <button class="restart">Continue</button>
+        </div>
+    </div>
+
+    <!-- Quiz Box -->
+    <div class="quiz_box">
+        <header>
+            <div class="title">Awesome Quiz Application</div>
+            
+            <div class="timer">
+                <div class="time_left_txt">Time Left</div>
+                <div class="timer_sec">15</div>
+            </div>
+            <div class="time_line"></div>
+        </header>
+        
+        <!-- question and answer view -->
+        <section>
+            <!-- question -->
+            <div class="que_text">
+          
+            </div>
+            <!-- answers -->
+            <div class="typeOfAnswer">You can chose <span class="multiple">no</span>answers only</div>
+            <div class="option_list">
+        
+            </div>
+        </section>
+
+      
+        <footer>
+            
+            <div class="total_que">
+              
+            </div>
+            <button class="next_btn">Next Que</button>
+        </footer>
+    </div>
+
+    <!-- Result Box -->
+    <div class="result_box">
+        <div class="icon">
+            <i class="fas fa-crown"></i>
+        </div>
+        <div class="complete_text">You've completed the Quiz!</div>
+        <div class="score_text">
+          
+        </div>
+        <div class="buttons">
+            <button class="restart">Replay Quiz</button>
+            <button class="quit"><a href="../../index.html">Quit Quiz</a> </button>
+        </div>
+    </div>
+
+<script src="play.js"></script>
+</body>
+</html>

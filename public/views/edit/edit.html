@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App quiz</title>
+    <!-- api -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="../../css/style.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!-- =============================================================================== -->
+    <!-- header menu -->
+    <div class="menu">
+        <div class="menuHeader">
+            <div class="appLogo"><img src="../../img/logo.png" width="15%"></div>
+            <div class="TitleApp">SMART APP NODE-G02</div>
+            <div class="showUserLogin">
+                <a href="../../index.html">
+                    <i class='fa fa-user-circle-o' style='font-size:24px'></i>
+                    <span class="userLogin"></span>
+                </a>
+             </div>
+        </div>
+    </div>
+
+    <!-- =============================================================================== -->
+    <!-- contianer CreatForm -->
+    <div class="contianerForm">
+        <div class="card-bodys">
+            <div class="addQuizTitle">
+                <span class="setTextTitle">Title: <input type="text" id="getTitle" placeholder="Quiz title" class="inputTitle" required></span> 
+            </div>
+            <div class="displayformCreateanswer">
+                <button type="submit" id="btn_displayDailog">Add Question</button>
+            </div>
+        </div>
+            <!-- ============================================================================= -->
+            <!-- CONTIANER SHOW LIST QUESTION  -->
+            <div class="listQuestion">
+                <h2 class="titleQuiz" id="hide"><span>Quiz: </span> <span id="subjectQuiz"> </span></h2>
+                <div id="dopDisplayOnscreen">
+                    <!-- <div class="setListAdd" id="question_view">
+                        <div class="li-getquestion">
+                            <span class="getValue"> 10 (pt) QUESTION</span>
+                            <button class="btnInQuest">
+                                <img src="../../img/edit.png" alt=""  class="editor">
+                                <img src="../../img/delete-icon.png" alt="" class="deleter">
+                            </button>
+                        </div>
+                        <div class="answers_list">
+                            <div class="option"><span> A1 </span></div>
+                            <div class="option"><span> A2 </span></div>
+                            <div class="option"><span> A3 </span></div>
+                            <div class="option"><span> A4 </span></div>
+                        </div>  
+                        <div class="clickDesplay"><i class='fas fa-chevron-circle-down'></i></div>
+                    </div>  -->
+                </div>            
+            </div>
+    </div>
+    <!-- display form -->
+    <div class="displayDialog" id="hide">
+        <div class="contentInput">
+            <div class="hideDialog"><i class="fa fa-remove" style="font: size 30px" id="spanIconHide"></i></div>
+            <h1 class="h1-center">Create your question</h1>
+            <div class="putScore">Score: <input type="text" placeholder="Set score" id="getScore"></div>
+            <div class="set-input">
+                <input type="text" id="QuestionId" placeholder="Type question" required>
+            </div>
+            <div>Choose type your answers</div>
+            <div class="allTypeanswers">
+                <!-- --- Choose type answer of questions --- -->
+                <select name="selectType" id="choseTypeAnswers">
+                    <option value="No_Typeanswers">Type answer</option>
+                    <option value="Checkbox">Checkbox</option>
+                    <option value="Multiple">Multiple choice</option>
+                </select>
+                <div class="multipleAnswer" id="hide">
+                    <!-- --- Checkbox answers --- -->
+                </div>
+                <div class="optionAnswers" id="hide">
+                    <!-- --- Option answer --- -->
+                </div>
+
+                <!-- // add type answer input -->
+                <div class="divAddoption"><button type="submit" class="addoption" id="hide">Add Answer+</button></div>
+                <!-- /// post -->
+                <div class="postQuestion"><input type="submit" value="SAVE ANSWER" class="btn_PostData"></div>
+            </div>
+        </div> 
+    </div>
+    <div class="btnPractice" id="hide"><span><a class="classforpractice" href="../../views/play/play.html">Practice</a></span></div>
+    <!-- link javascript -->
+    <script src="edit.js"></script>
+</body>
+</html>

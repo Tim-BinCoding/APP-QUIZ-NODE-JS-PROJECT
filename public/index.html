@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Welcome to quiz app</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/> -->
+</head>
+<body>
+    <!-- header menu -->
+    <div class="menu">
+        <div class="menuHeader">
+            <div class="appLogo"><img src="img/logo.png" width="15%"></div>
+            <div class="TitleApp">SMART APP NODE-G02</div>
+            <div class="showUserLogin">
+                <i class='fa fa-user-circle-o' style='font-size:24px'></i>
+                <span class="userLogin"></span>
+            </div>
+        </div>
+    </div>
+    <!---------------------------form login and signin-------------------------->
+    <div class="contianerFormLogin">
+        <div class="wrapper">
+            <div class="title-text">
+                <div class="title login">Login</div>
+                <div class="title signup">Signup</div>
+            </div>
+            <div class="form-container">
+                <div class="slide-controls">
+                    <input type="radio" name="slide" id="login">
+                    <input type="radio" name="slide" id="signup">
+                    <label for="login" class="slide login">Login</label>
+                    <label for="signup" class="slide signup">Signup</label>
+                    <div class="slider-tab"></div>
+                </div>
+                <div class="form-inner">
+                    <form action="#" class="login">
+                        <div class="form-group correct" style="display:none;">
+                            <div class="alert alert-success d-flex justify-content-center" role="alert">
+                                login successfully!
+                            </div>
+                        </div>
+                        <div class="form-group incorrect" style="display:none;">
+                            <div class="alert alert-danger d-flex justify-content-center" role="alert">
+                                invalid email and password!
+                            </div>
+                        </div>
+                        <div class="field">
+                            <input type="email" id="loginemail" placeholder="Email Address" required>
+                        </div>
+                        <!-- hige and show password -->
+                        <div class="field">
+                            <div class="input-field d-flex">
+                                <input class="pswrd" type="password" id="loginpasword" placeholder="password" required>
+                                <div class="show d-flex justify-content-end align-items-center">
+                                    <li class="fa fa-eye mr-2" style="display: none;"></li>
+                                    <li class="fa fa-eye-slash mr-2"></li>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary mt-4" value="login" id="btnlogin">Login</button>
+                        </div>
+                    </form>
+                    <form class="signup">
+                        <div class="form-group Correct" style="display:none;">
+                            <div class="alert alert-success d-flex justify-content-center" role="alert">
+                                create successfully!
+                            </div>
+                        </div>
+                        <div class="field">
+                            <input type="text" id="firstname" placeholder="First Name" required>
+                        </div>
+                        <div class="field">
+                            <input type="text" id="lastname" placeholder="Last Name" required>
+                        </div>
+                        <div class="field">
+                            <input type="email" id="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="field">
+                            <div class="input-field d-flex">
+                                <input class="pswrd" type="password" id="signinpassword" placeholder="password" required>
+                                <div class="show d-flex justify-content-end align-items-center">
+                                    <li class="fa fa-eye mr-2" style="display: none;"></li>
+                                    <li class="fa fa-eye-slash mr-2"></li>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary mt-3" value="Submit" id="btnsignin">Submit</button>
+                        </div>
+                    </form>   
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----------------------indext play quiz and create------------------>
+    <div class="contianerApp mt-5">
+        <div class="cardapp">
+            <div class="card-item">
+                <img src="img/quizicon.png" alt="" class="icon-img">
+                <button class="btn-ToQuiz btn-hover btnplay">Quizz</button>
+            </div>
+            <div class="card-item">
+                <img src="img/iconcreate.png" alt="" class="icon-img">
+                <a href="views/edit/edit.html"><button class="btn-ToCreat btn-hover">Create Quiz</button></a>
+            </div> 
+        </div>
+    </div>
+</div>
+<!------------------------------index many quizses----------------------------->
+<div class="cotaninercards" style="display: none;">
+    <div class="topicQuizz">Quizz</div>
+    <div class="card-group">
+        <!-- <div class="card-body m-2">
+            <div class="card-title mt-4">
+                <h5>Present Simple</h5>
+            </div>
+            <div class="btngroup">
+                <a href="views/play/play.html" class="btn btn-primary mr-2">Play Quiz</a>
+                <a href="views/edit/edit.html" class="btn btn-primary ml-2">Edit Quiz</a>
+            </div>
+        </div>
+        <div class="card-body m-2">
+            <div class="card-title mt-4">
+                <h5>Past Perfect</h5>
+            </div>
+            <div class="btngroup">
+                <a href="views/play/play.html" class="btn btn-primary mr-2">Play Quiz</a>
+                <a href="views/edit/edit.html"><button class="btn btn-primary ml-2">Edit Quiz</button></a>
+            </div>
+        </div> -->
+    </div>
+
+    <!-- link javascript -->
+    <script src="js/mains.js"></script>
+</body>
+</html>
