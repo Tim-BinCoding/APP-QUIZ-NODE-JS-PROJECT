@@ -3,12 +3,11 @@ const express = require('express');
 const router = express.Router();
 
 const exportModel = require('../models/submit_model')
-// items route
 
 // get correction by id quiz
-router.get("/", (req, res)=>{
+router.get('/', (req, res)=>{
     exportModel.sumbitModel.find()
-    // .populate("quizId")
+    .populate('questionId')
     .then((result)=>{ console.log(result); res.send(result)})
 })
 

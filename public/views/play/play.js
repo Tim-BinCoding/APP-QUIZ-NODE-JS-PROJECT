@@ -35,6 +35,8 @@ const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
 const typeAnswers = document.querySelector(".typeOfAnswer")
 const DOMBUTTON_BODY = document.body
+let quizToSubmit=[]
+let userAnswers=[]
 
 // if startQuiz button clicked
 start_btn.onclick = ()=>{
@@ -45,6 +47,7 @@ start_btn.onclick = ()=>{
    questions.forEach(element => {
        document.querySelector(".title").textContent=element.quizId.title
    }); 
+   
 }
 
 // if exitQuiz button clicked
@@ -72,30 +75,30 @@ let counterLine;
 let widthValue = 0;
 let clickAnswers = 0
 
-const restart_quiz = result_box.querySelector(".buttons .restart");
-// const quit_quiz = result_box.querySelector(".buttons .quit");
+// const restart_quiz = result_box.querySelector(".buttons .restart");
+// // const quit_quiz = result_box.querySelector(".buttons .quit");
 
-// if restartQuiz button clicked
-restart_quiz.onclick = ()=>{
-    quiz_box.classList.add("activeQuiz"); //show quiz box
-    result_box.classList.remove("activeResult"); //hide result box
-    timeValue = 15; 
-    que_count = 0;
-    que_numb = 1;
-    totalScore=0;
-    score = 0
-    userScore = 0;
-    widthValue = 0;
-    clickAnswers=0;
-    showQuetions(que_count); //calling showQestions function
-    queCounter(que_numb); //passing que_numb value to queCounter
-    clearInterval(counter); //clear counter
-    clearInterval(counterLine); //clear counterLine
-    startTimer(timeValue); //calling startTimer function
-    startTimerLine(widthValue); //calling startTimerLine function
-    timeText.textContent = "Time Left"; //change the text of timeText to Time Left
-    next_btn.classList.remove("show"); //hide the next button
-}
+// // if restartQuiz button clicked
+// restart_quiz.onclick = ()=>{
+//     quiz_box.classList.add("activeQuiz"); //show quiz box
+//     result_box.classList.remove("activeResult"); //hide result box
+//     timeValue = 15; 
+//     que_count = 0;
+//     que_numb = 1;
+//     totalScore=0;
+//     score = 0
+//     userScore = 0;
+//     widthValue = 0;
+//     clickAnswers=0;
+//     showQuetions(que_count); //calling showQestions function
+//     queCounter(que_numb); //passing que_numb value to queCounter
+//     clearInterval(counter); //clear counter
+//     clearInterval(counterLine); //clear counterLine
+//     startTimer(timeValue); //calling startTimer function
+//     startTimerLine(widthValue); //calling startTimerLine function
+//     timeText.textContent = "Time Left"; //change the text of timeText to Time Left
+//     next_btn.classList.remove("show"); //hide the next button
+// }
 
 const next_btn = document.querySelector("footer .next_btn");
 const bottom_ques_counter = document.querySelector("footer .total_que");
@@ -122,6 +125,7 @@ next_btn.onclick = ()=>{
 }
 
 function showQuetions(index){
+    
     const questionDOM = document.querySelector(".que_text");
     if(questions[index].isCorrect.length == 1){
         typeAnswers.innerHTML = "There is "+ questions[index].isCorrect.length + " answer correct !!!"
@@ -136,11 +140,10 @@ function showQuetions(index){
     
     questionDOM.innerHTML = dom_Question;
     answersDOM.innerHTML = option_tag;
-    
+
     const option = answersDOM.querySelectorAll(".option");
     totalScore += questions[index].score
     score = questions[index].score
-
     for(i=0; i < option.length; i++){
         option[i].setAttribute("onclick", "optionSelected(this)");
     }
@@ -153,6 +156,7 @@ function optionSelected(answer){
     clickAnswers ++
     let userAns = answer.textContent; 
     let correcAns = questions[que_count].isCorrect;
+    userAnswers.push(userAns)
     const allOptions = answersDOM.children.length;
     let outOfCorrect = 0;
     for(correctanswer of correcAns){
@@ -183,10 +187,24 @@ function optionSelected(answer){
             clickAnswers = 0
         }
         next_btn.classList.add("show");
+        quizToSubmit.push(
+            {
+                title: questions[que_count].quizId.title,
+                question: questions[que_count].question,
+                answers: questions[que_count].answers,
+                correctAnswers: correcAns,
+                userAnswers: userAnswers,
+                defaultScore: questions[que_count].score,
+                correctionScore:parseInt(score)
+            }
+        )
+        userAnswers=[];
     } 
 }
 
 function showResult(){
+    let quizId = JSON.parse(localStorage.getItem("QUIZ_ID"+JSON.parse(localStorage.getItem("USER_ID"))))
+    localStorage.setItem("SUMIT_ID:"+quizId, JSON.stringify(quizToSubmit))
     info_box.classList.remove("activeInfo");
     quiz_box.classList.remove("activeQuiz");
     result_box.classList.add("activeResult");
@@ -235,13 +253,27 @@ function startTimer(time){
                 answersDOM.children[i].classList.add("disabled");
             }
             next_btn.classList.add("show");
+            score=0
+            quizToSubmit.push(
+                {
+                    title: questions[que_count].quizId.title,
+                    question: questions[que_count].question,
+                    answers: questions[que_count].answers,
+                    correctAnswers: questions[que_count].isCorrect,
+                    userAnswers: userAnswers,
+                    defaultScore: questions[que_count].score,
+                    correctionScore:parseInt(score)
+                }
+            )
+            userAnswers=[];
+            correctAnswers=[]
         }
     }
 }
 
 
 function startTimerLine(time){
-    let widthOfdomline = quiz_box.clientWidth-1
+    // let widthOfdomline = quiz_box.clientWidth-1
     counterLine = setInterval(timer, 29);
     function timer(){
         time += 1; 

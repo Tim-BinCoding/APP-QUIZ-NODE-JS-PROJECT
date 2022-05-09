@@ -42,8 +42,5 @@ router.post("/login",(req, res) => {
     });
 })
 
-// when
-
-
 // TODO: export router
 module.exports = router

@@ -1,5 +1,6 @@
 
 const mongoose = require("mongoose");
+const { stringify } = require("nodemon/lib/utils");
 
 // TODO: CONNECT TO MONGODB
 
@@ -16,20 +17,15 @@ db.once("open", function () {
 // TODO:  DEFIN THE SCHEMAR FOR APP QUIZ COLLECTION
 
 const submitSchema = new mongoose.Schema({
-    quizId:{type: mongoose.Schema.Types.ObjectId, ref:"quizses"},
-    quizzes:{
-        question:{type:String, require:true},
-        answers:[{type:String, require:true}],
-        correctAnswers:[{type:String, require:true}],
-        incorrectAnswers:[{type:String, require:true}],
-        eachScore:{type:Number, require:true},
-    },
+    questionId:[{type: mongoose.Schema.Types.ObjectId, ref:"questions", require:true}],
+    userAnswer:[[{type:String, require:true}]],
     totalScore:{type:Number, require:true}
 }) 
 
+
 // CREAT MODEL FOR APP QUIZ COLLECTION FROM SCHEMAR 
 
-const sumbitModel = mongoose.model("submitation", submitSchema);
+const sumbitModel = mongoose.model("submitations", submitSchema);
 
 // EXPORT MODEL
 
