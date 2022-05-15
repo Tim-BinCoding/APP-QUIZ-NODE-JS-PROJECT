@@ -1,9 +1,7 @@
 
-const URL = "http://localhost:80"
-
 function requestFromServer(){
     let id = JSON.parse(localStorage.getItem("QUIZ_ID"+JSON.parse(localStorage.getItem("USER_ID"))))
-    axios.get(URL + "/questions/question/"+id).then((respone)=>{
+    axios.get("/questions/question/"+id).then((respone)=>{
         let questions = respone.data
         localStorage.setItem("YOUR_QUIZ", JSON.stringify(questions))
     })
@@ -75,31 +73,6 @@ let counterLine;
 let widthValue = 0;
 let clickAnswers = 0
 
-// const restart_quiz = result_box.querySelector(".buttons .restart");
-// // const quit_quiz = result_box.querySelector(".buttons .quit");
-
-// // if restartQuiz button clicked
-// restart_quiz.onclick = ()=>{
-//     quiz_box.classList.add("activeQuiz"); //show quiz box
-//     result_box.classList.remove("activeResult"); //hide result box
-//     timeValue = 15; 
-//     que_count = 0;
-//     que_numb = 1;
-//     totalScore=0;
-//     score = 0
-//     userScore = 0;
-//     widthValue = 0;
-//     clickAnswers=0;
-//     showQuetions(que_count); //calling showQestions function
-//     queCounter(que_numb); //passing que_numb value to queCounter
-//     clearInterval(counter); //clear counter
-//     clearInterval(counterLine); //clear counterLine
-//     startTimer(timeValue); //calling startTimer function
-//     startTimerLine(widthValue); //calling startTimerLine function
-//     timeText.textContent = "Time Left"; //change the text of timeText to Time Left
-//     next_btn.classList.remove("show"); //hide the next button
-// }
-
 const next_btn = document.querySelector("footer .next_btn");
 const bottom_ques_counter = document.querySelector("footer .total_que");
 
@@ -149,8 +122,8 @@ function showQuetions(index){
     }
 }
 
-let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
-let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
+let tickIconTag = '<div class="icon tick"><i class="fa fa-check"></i></div>';
+let crossIconTag = '<div class="icon cross"><i class="fa fa-close"></i></div>';
 /// when user click on answers
 function optionSelected(answer){
     clickAnswers ++

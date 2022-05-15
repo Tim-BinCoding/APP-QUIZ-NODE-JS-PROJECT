@@ -18,10 +18,9 @@ function signUp(e) {
   let useremail = emailAddress.value;
   let userpassword = pass.value;
   // request the server to create new user
-  let URL = "http://localhost/users/create"
   let body = {first_name:firstname, last_name:lastname, email:useremail, password:userpassword};
   console.log('my sign up id', body);
-  axios.post(URL, body).then((response)=> {
+  axios.post("/users/create", body).then((response)=> {
     if(response) {
         document.querySelector(".Correct").style.display = "block";
         setTimeout(function(){
@@ -38,9 +37,8 @@ function signUp(e) {
 function login(){
   let useremail = uemail.value;
   let userpassword = upassword.value;
-  let url = "http://localhost/users/login";
   let body = {email:useremail, password:userpassword};
-  axios.post(url, body).then((response)=>{
+  axios.post("/users/login", body).then((response)=>{
       if(response.data){
           document.querySelector(".correct").style.display = "block";
           setTimeout(function(){
@@ -124,20 +122,6 @@ function showquizses() {
 let btnquiz = document.querySelector(".btnplay");
 btnquiz.addEventListener("click", showquizses);
 
-//---------------------function click back-------------------------------
-// var input = document.querySelector('.pswrd');
-// var show = document.querySelector('.fa-eye');
-// show.addEventListener('click', active);
-// function active(){
-//   if(input.type === "password"){
-//     input.type = "text";
-//     show.style.color = "#1DA1F2";
-//   }else{
-//     input.type = "password";
-//     show.style.color = "#111";
-//   }
-// }
-
 // function icons eye show password and hide
 function showpswrd(){
   let inputType=document.querySelectorAll(".pswrd")
@@ -185,9 +169,7 @@ function refreshDOMToViewTopic(quizses){
 
 // TODO: request datas
 function getInforOfUser(userpassword){
-
-  let url = "http://localhost:80/users/logined/";
-  axios.get(url + userpassword).then((respone)=>{
+  axios.get("/users/logined/"+userpassword).then((respone)=>{
     let userInfor = respone.data
     let inFormationuser = []
     for (user of userInfor){
@@ -210,14 +192,13 @@ requestQuizsesFromServer()
 
 /// Dom of button
 document.body.addEventListener("click", (e)=>{
-  let URL = "http://localhost:80"
   if(e.target.textContent == "Play Quiz"){
     localStorage.setItem("QUIZ_ID"+JSON.parse(localStorage.getItem("USER_ID")), JSON.stringify(e.target.parentElement.id))
   }if(e.target.textContent == "Edit Quiz" && e.target.className=="btn btn-primary ml-2"){
     localStorage.setItem("EDIT_ID"+ JSON.parse(localStorage.getItem("USER_ID")), JSON.stringify(e.target.parentElement.id))
   }if(e.target.textContent == "Create Quiz"){
     let body={title:"...", userId:JSON.parse(localStorage.getItem("USER_ID"))}
-    axios.post(URL + "/quizses/quiz", body)
+    axios.post("/quizses/quiz", body)
     .then((result)=>{console.log(result)})
     .catch((error)=>{console.log("My post is error at", error)})
     userCreatQuiz()
@@ -238,9 +219,8 @@ document.body.addEventListener("click", (e)=>{
 })
 
 function userCreatQuiz(){
-  let url = "http://localhost:80/quizses/quiz/";
   let title ="..."
-  axios.get(url + title).then((respone)=>{
+  axios.get("/quizses/quiz/" + title).then((respone)=>{
     localStorage.setItem("EDIT_ID"+ JSON.parse(localStorage.getItem("USER_ID")), JSON.stringify(respone.data[0]._id))
   })
 }

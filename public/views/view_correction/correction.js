@@ -46,25 +46,28 @@ function refreshDOM(questions){
 }
 
 function checkAnswers(allAnswers, answers, userAnswers){
-    let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
-    let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
+    let tickIconTag = '<div class="icon tick"><i class="fa fa-check"></i></div>';
+    let crossIconTag = '<div class="icon cross"><i class="fa fa-close"></i></div>';
+    let isUserCorrect = false
     for (let index = 0; index < allAnswers.children.length; index++) {
         const element = allAnswers.children[index];
-        let isUserCorrect = false
         let isUserIncorrect=false
         let isCorrectAns=false
-        if(answers.length==userAnswers.length){
+        if(answers.length == userAnswers.length){
             for (let n = 0; n < userAnswers.length; n++) {
-                if(answers[n]== userAnswers[n] && userAnswers[n]==element.textContent){isUserCorrect=true}
-               else if(answers[n]!=userAnswers[n]&&userAnswers[n]==element.textContent){isUserIncorrect=true}
+                for (answer of answers){
+                    if(answer == userAnswers[n] && userAnswers[n] == element.textContent && isUserCorrect==false){isUserCorrect=true}
+                }
+               if(answers[n]!=userAnswers[n]&&userAnswers[n] == element.textContent && isUserCorrect==false){isUserIncorrect=true}
                else if(answers[n] != userAnswers[n] && answers[n] == element.textContent){isCorrectAns=true}
             }
         }else{
-            for (let n = 0; n < answers.length; n++){if(answers[n]== element.textContent){isCorrectAns=true}}
+            for (let n = 0; n < answers.length; n++){if(answers[n] == element.textContent){isCorrectAns=true}}
         }
         if(isUserCorrect){
             element.setAttribute("class", "option correct");
             element.insertAdjacentHTML("beforeend", tickIconTag)
+            isUserCorrect = false
         }if(isUserIncorrect){
             element.setAttribute("class", "option incorrect");
             element.insertAdjacentHTML("beforeend", crossIconTag)
